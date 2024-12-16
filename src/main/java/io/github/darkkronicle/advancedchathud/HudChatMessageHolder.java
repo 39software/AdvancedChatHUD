@@ -44,11 +44,11 @@ public class HudChatMessageHolder implements IChatMessageProcessor {
         }
     }
 
-    public void addMessage(HudChatMessage message) {
-        messages.add(0, message);
+    private void addMessage(HudChatMessage message) {
+        messages.addFirst(message);
         WindowManager.getInstance().onNewMessage(message);
         while (messages.size() > HudConfigStorage.General.STORED_LINES.config.getIntegerValue()) {
-            messages.remove(messages.size() - 1);
+            messages.removeLast();
         }
     }
 

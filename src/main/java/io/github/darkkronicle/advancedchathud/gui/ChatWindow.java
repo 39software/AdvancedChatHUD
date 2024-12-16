@@ -78,10 +78,10 @@ public class ChatWindow {
     @Getter private AbstractChatTab tab;
 
     private static final Identifier X_ICON =
-            new Identifier(AdvancedChatHud.MOD_ID, "textures/gui/chatwindow/x_icon.png");
+            Identifier.of(AdvancedChatHud.MOD_ID, "textures/gui/chatwindow/x_icon.png");
 
     private static final Identifier RESIZE_ICON =
-            new Identifier(AdvancedChatHud.MOD_ID, "textures/gui/chatwindow/resize_icon.png");
+            Identifier.of(AdvancedChatHud.MOD_ID, "textures/gui/chatwindow/resize_icon.png");
 
     public ChatWindow(AbstractChatTab tab) {
         this.client = MinecraftClient.getInstance();

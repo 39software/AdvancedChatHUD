@@ -48,10 +48,10 @@ import java.util.List;
 public class HudSection extends AdvancedChatScreenSection {
 
     private static final Identifier ADD_ICON =
-            new Identifier(AdvancedChatHud.MOD_ID, "textures/gui/chatwindow/add_window.png");
+            Identifier.of(AdvancedChatHud.MOD_ID, "textures/gui/chatwindow/add_window.png");
 
     private static final Identifier RESET_ICON =
-            new Identifier(AdvancedChatHud.MOD_ID, "textures/gui/chatwindow/reset_windows.png");
+            Identifier.of(AdvancedChatHud.MOD_ID, "textures/gui/chatwindow/reset_windows.png");
 
     private ContextMenu menu = null;
 

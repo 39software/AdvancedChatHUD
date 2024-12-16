@@ -128,13 +128,7 @@ public class MainChatTab extends AbstractChatTab {
         }
 
         for (HudChatMessage message : HudChatMessageHolder.getInstance().getMessages()) {
-            ArrayList<AbstractChatTab> tabs = new ArrayList<>();
-            for (AbstractChatTab t : allChatTabs) {
-                if (t.shouldAdd(message.getMessage().getOriginalText())) {
-                    tabs.add(t);
-                }
-            }
-            message.setTabs(tabs);
+            message.setupTabs(this);
         }
         this.refreshOptions();
         if (windows != null) {

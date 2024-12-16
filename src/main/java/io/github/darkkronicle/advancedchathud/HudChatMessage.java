@@ -12,6 +12,8 @@ import io.github.darkkronicle.advancedchathud.tabs.AbstractChatTab;
 import io.github.darkkronicle.advancedchathud.tabs.CustomChatTab;
 import java.util.ArrayList;
 import java.util.List;
+
+import io.github.darkkronicle.advancedchathud.tabs.MainChatTab;
 import lombok.Getter;
 import lombok.Setter;
 import net.fabricmc.api.EnvType;
@@ -20,16 +22,24 @@ import net.fabricmc.api.Environment;
 @Environment(EnvType.CLIENT)
 public class HudChatMessage {
 
-    @Setter @Getter private List<AbstractChatTab> tabs;
+    @Getter private List<AbstractChatTab> tabs;
 
     @Getter private final ChatMessage message;
 
     public HudChatMessage(ChatMessage message) {
         this(message, new ArrayList<>());
 
+        setupTabs(AdvancedChatHud.MAIN_CHAT_TAB);
+        for (AbstractChatTab tab : tabs) {
+            tab.addNewUnread();
+        }
+    }
+
+    public void setupTabs(MainChatTab mainTab) {
+        this.tabs.clear();
         boolean forward = true;
-        if (AdvancedChatHud.MAIN_CHAT_TAB.getCustomChatTabs().size() > 0) {
-            for (CustomChatTab tab : AdvancedChatHud.MAIN_CHAT_TAB.getCustomChatTabs()) {
+        if (!mainTab.getCustomChatTabs().isEmpty()) {
+            for (CustomChatTab tab : mainTab.getCustomChatTabs()) {
                 if (!tab.shouldAdd(message.getOriginalText())) {
                     continue;
                 }
@@ -44,10 +54,7 @@ public class HudChatMessage {
             }
         }
         if (forward) {
-            tabs.add(AdvancedChatHud.MAIN_CHAT_TAB);
-        }
-        for (AbstractChatTab tab : tabs) {
-            tab.addNewUnread();
+            tabs.add(mainTab);
         }
     }
 

@@ -419,7 +419,7 @@ public class HudConfigStorage implements IConfigHandler {
 
         Visibility(String configString) {
             this.texture =
-                    new Identifier(
+                    Identifier.of(
                             AdvancedChatHud.MOD_ID,
                             "textures/gui/chatwindow/" + configString + ".png");
             this.configString = configString;
